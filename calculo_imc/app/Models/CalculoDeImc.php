@@ -56,13 +56,37 @@
             $idade = $anoAtual - $anoNascimento;
 
             if($mesAtual < $mesNascimento){
+                $mes = 12 - ($mesNascimento - $mesAtual);
+            }
+            else if($mesAtual == $mesNascimento){
+                if($diaAtual >= $diaNascimento){
+                    $mes = 0;
+                }
+                else{
+                    $mes = 11;
+                }
+            }
+            else{
+                $mes = $mesAtual - $mesNascimento;
+            }
+
+            if($mesAtual < $mesNascimento){
                 $idade -= 1;
             }
             else if(($mesAtual == $mesNascimento) && ($diaAtual <= $diaNascimento)){
                 $idade -= 1;
             }
 
-            return $idade;
+            $infoIdade = array();
+            
+            $infoIdade['idade'] = $idade;
+            $infoIdade['mes'] = $mes;
+            
+            return $infoIdade;
+        }
+
+        public function calculaQualidadeSono(){
+            
         }
     }
 ?>

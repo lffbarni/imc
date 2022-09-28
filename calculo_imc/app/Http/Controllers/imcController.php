@@ -19,7 +19,7 @@
 
             $situacao = $CalculoDeImc->defineSituacao($imc);
 
-            return view('resultado', ['imc' => $imc, 'idade' => $idade, 'nome' => $_GET['nome'], 'situacao' => $situacao]);
+            return view('resultado', ['imc' => $imc, 'idade' => $idade['ano'], 'nome' => $_GET['nome'], 'situacao' => $situacao]);
         }
     }
 ?>
