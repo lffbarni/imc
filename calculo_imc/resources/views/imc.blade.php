@@ -32,6 +32,11 @@
                 <input type="number" step="0.01" name="altura">
                 <br>
                 <br>
+                <label for="sono">Tempo de sono (Horas)</label>
+                <br>
+                <input type="number" name="sono">
+                <br>
+                <br>
                 <button type="submit">Calcular IMC</button>
             </form>
         </div>

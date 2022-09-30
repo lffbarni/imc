@@ -7,16 +7,14 @@
     class CalculoDeImc extends Model{
         use HasFactory;
 
-        public function calcular(){
-            $altura = $_GET['altura'];
-            $peso = $_GET['peso'];
+        public function calcular($altura, $peso){
 
             $imc = $peso/($altura*$altura);
 
             return $imc;
         }
 
-        function defineSituacao($imc){
+        public function defineSituacao($imc){
             switch ($imc){
                 case $imc<18.5:
                     $situacao = "Abaixo do peso";
@@ -40,8 +38,7 @@
             return $situacao;
         }
 
-        public function calcularIdade(){
-            $nascimento = $_GET['nascimento'];
+        public function calcularIdade($nascimento){
 
             $data = explode('-', $nascimento);
 
@@ -85,8 +82,98 @@
             return $infoIdade;
         }
 
-        public function calculaQualidadeSono(){
-            
+        public function calculaQualidadeSono($idade, $meses, $sono){
+            if($idade == 0){
+                if($meses <=3){
+                    if($sono < 14){
+                        $qualidadeDoSono = "Horas de sono insuficientes.";
+                    }
+                    else if($sono >= 14 && $sono <= 17){
+                        $qualidadeDoSono = "Horas de sono adequadas.";
+                    }
+                    else{
+                        $qualidadeDoSono= "Horas de sono excessivas.";
+                    }
+                }
+                else{
+                    if($sono < 12){
+                        $qualidadeDoSono = "Horas de sono insuficientes.";
+                    }
+                    else if($sono >= 12 && $sono <= 15){
+                        $qualidadeDoSono = "Horas de sono adequadas.";
+                    }
+                    else{
+                        $qualidadeDoSono= "Horas de sono excessivas.";
+                    }
+                }
+            }
+            else if($idade >= 1 && $idade <= 2){
+                if($sono < 12){
+                    $qualidadeDoSono = "Horas de sono insuficientes.";
+                }
+                else if($sono >= 12 && $sono <= 15){
+                    $qualidadeDoSono = "Horas de sono adequadas.";
+                }
+                else{
+                    $qualidadeDoSono= "Horas de sono excessivas.";
+                } 
+            }
+            else if($idade >= 3 && $idade <= 5){
+                if($sono < 10){
+                    $qualidadeDoSono = "Horas de sono insuficientes.";
+                }
+                else if($sono >= 10 && $sono <= 13){
+                    $qualidadeDoSono = "Horas de sono adequadas.";
+                }
+                else{
+                    $qualidadeDoSono= "Horas de sono excessivas.";
+                }  
+            }
+            else if($idade >= 6 && $idade <= 13){
+                if($sono < 9){
+                    $qualidadeDoSono = "Horas de sono insuficientes.";
+                }
+                else if($sono >= 9 && $sono <= 11){
+                    $qualidadeDoSono = "Horas de sono adequadas.";
+                }
+                else{
+                    $qualidadeDoSono= "Horas de sono excessivas.";
+                }  
+            }
+            else if($idade >= 14 && $idade <= 17){
+                if($sono < 8){
+                    $qualidadeDoSono = "Horas de sono insuficientes.";
+                }
+                else if($sono >= 8 && $sono <= 10){
+                    $qualidadeDoSono = "Horas de sono adequadas.";
+                }
+                else{
+                    $qualidadeDoSono= "Horas de sono excessivas.";
+                }  
+            }
+            else if($idade >= 18 && $idade <=64){
+                if($sono < 7){
+                    $qualidadeDoSono = "Horas de sono insuficientes.";
+                }
+                else if($sono >= 7 && $sono <= 9){
+                    $qualidadeDoSono = "Horas de sono adequadas.";
+                }
+                else{
+                    $qualidadeDoSono= "Horas de sono excessivas.";
+                }  
+            }
+            else{
+                if($sono < 7){
+                    $qualidadeDoSono = "Horas de sono insuficientes.";
+                }
+                else if($sono >= 7 && $sono <= 8){
+                    $qualidadeDoSono = "Horas de sono adequadas.";
+                }
+                else{
+                    $qualidadeDoSono= "Horas de sono excessivas.";
+                }  
+            }
+            return $qualidadeDoSono;
         }
     }
 ?>

@@ -13,13 +13,16 @@
         public function calcularIMC(){
             $CalculoDeImc = new CalculoDeImc();
 
-            $imc = $CalculoDeImc->calcular();
+            $imc = $CalculoDeImc->calcular($_GET['altura'], $_GET['peso']);
 
-            $idade = $CalculoDeImc->calcularIdade();
+            $idade = $CalculoDeImc->calcularIdade($_GET['nascimento']);
 
             $situacao = $CalculoDeImc->defineSituacao($imc);
 
-            return view('resultado', ['imc' => $imc, 'idade' => $idade['ano'], 'nome' => $_GET['nome'], 'situacao' => $situacao]);
+            $qualidadeDoSono = $CalculoDeImc->calculaQualidadeSono($idade['idade'], $idade['mes'], $_GET['sono']);
+
+            return view('resultado', ['imc' => $imc, 'idade' => $idade['idade'], 'meses' => $idade['mes'],
+            'nome' => $_GET['nome'], 'situacao' => $situacao, 'qualidadeSono' => $qualidadeDoSono]);
         }
     }
 ?>

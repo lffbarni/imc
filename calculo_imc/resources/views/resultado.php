@@ -8,9 +8,10 @@
 </head>
 <body>
     <h4>nome: <?php echo $nome ?></h4>
-    <h4>idade: <?php echo $idade ?></h4>
+    <h4>idade: <?php echo $idade.' anos e '.$meses.' meses' ?></h4>
     <h4>imc: <?php echo $imc ?></h4>
     <h4>situação: <?php echo $situacao ?></h4>
+    <h4><?php echo $qualidadeSono ?></h4>
     <a href="javascript:history.back()" title="voltar">Voltar</a>
 </body>
 </html>
